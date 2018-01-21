@@ -3,7 +3,8 @@ const safeSplit = (text: string|null|undefined, separator: string|RegExp, limit?
     return text.split(separator, limit);
 };
 
-const keyword = safeSplit((document.querySelector(".contentHeader > h1 > span") as HTMLElement).innerText, /\s/)
+const element: HTMLElement = document.querySelector(".contentHeader > h1 > span") || document.querySelector(".message > p > span");
+const keyword = safeSplit(element.innerText, /\s/)
     .filter(v => !v.match(/[dD]アニメストア/))
     .join(" ");
 
