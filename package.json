@@ -1,0 +1,29 @@
+{
+  "name": "nico-d_anime-benri",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "NODE_ENV=DEV webpack --config webpack.config.js --watch",
+    "build": "NODE_ENV=PROD webpack --config webpack.config.js",
+    "watch:win": "set NODE_ENV=DEV && webpack --config webpack.config.js --watch",
+    "build:win": "set NODE_ENV=PROD && webpack --config webpack.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "copy-webpack-plugin": "^4.3.1",
+    "ts-loader": "^3.3.0",
+    "uglify-es": "^3.3.8",
+    "uglifyjs-webpack-plugin": "^1.1.6",
+    "webpack": "^3.10.0"
+  },
+  "dependencies": {
+    "@types/react": "^16.0.34",
+    "@types/react-dom": "^16.0.3",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "typescript": "^2.6.2"
+  }
+}
