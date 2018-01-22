@@ -1,5 +1,6 @@
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const path = require("path");
 
 const isDev = process.env.NODE_ENV.indexOf("DEV") >= 0;
@@ -20,20 +21,30 @@ const webpackConfig = {
     },
     devtool: options.devtool,
     module: {
-        loaders: [
+        rules: [
             {
-                loader: "ts-loader", // 読み込んだファイルを渡すプラグイン名
                 test: /\.tsx?$/,  // 読み込むファイルのマッチ条件。
+                use: ["ts-loader"]
+            },
+            {
+                test: /\.(css|sass|scss)$/,
+                use: ExtractTextPlugin.extract({
+                    use: [
+                        "sass-loader",
+                        "css-loader",
+                    ]
+                }),
             }
-        ]
+        ],
     },
     plugins: [
         new CopyWebpackPlugin([{
-            from: "static/manifest.json",
-        }, {
-            from: "static/icon.ico",
-        }
-        ]),
+            from: "static/*/**",
+        }]),
+        new ExtractTextPlugin({
+            filename: "styles.css",
+            allChunks: true,
+        })
     ]
 };
 
