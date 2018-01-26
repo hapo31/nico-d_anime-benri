@@ -17,8 +17,26 @@ function onSearchPage() {
 }
 
 function onWatchPage() {
+    const channelPageLink = document.querySelector<HTMLAnchorElement>(".ChannelInfo-pageLinks > a");
+    // dアニメストア動画以外では動かない
+    if (channelPageLink && channelPageLink.href.indexOf("ch2632720") === -1) {
+        return;
+    }
     const description = document.querySelector<HTMLDivElement>("div.VideoDescription-html");
-    const links = description.querySelectorAll("a");
+    const nextEpisodeLink = description.innerHTML.match(/次話→<a href="([^"]*)" class="watch">so\d*<\/a>/);
+    if (nextEpisodeLink) {
+        const video = document.querySelector("video");
+        if (video) {
+            video.addEventListener("ended", () => {
+                const nextEpAnchor = document.querySelector<HTMLAnchorElement>(`a[href="${nextEpisodeLink[1]}"`);
+                nextEpAnchor.click();
+                setTimeout(() => {
+                    onWatchPage();
+                }, 5000);
+            });
+        }
+    }
+
 
 
 }
@@ -54,9 +72,10 @@ function main() {
 
         case PAGE_TYPE.watch:
             onWatchPage();
-
+            break;
         default:
             console.error("unkown type");
     }
 }
 
+main();

@@ -10,13 +10,10 @@
                 "http://www.nicovideo.jp/tag/*D%E3%82%A2%E3%83%8B%E3%83%A1%E3%82%B9%E3%83%88%E3%82%A2*",
                 "http://www.nicovideo.jp/search/*D%E3%82%A2%E3%83%8B%E3%83%A1%E3%82%B9%E3%83%88%E3%82%A2*",
                 "http://www.nicovideo.jp/search/*d%E3%82%A2%E3%83%8B%E3%83%A1%E3%82%B9%E3%83%88%E3%82%A2*",
-                "http://www.nicovideo.jp/watch/so*"
+                "http://www.nicovideo.jp/watch/*"
             ],
             "js": [
                 "script.js"
-            ],
-            "css": [
-                "styles.css"
             ]
         }
     ],
