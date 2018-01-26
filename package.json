@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch": "NODE_ENV=DEV webpack --config webpack.config.js --watch",
+    "start": "NODE_ENV=DEV webpack --config webpack.config.js --watch",
     "build": "NODE_ENV=PROD webpack --config webpack.config.js",
     "watch:win": "set NODE_ENV=DEV && webpack --config webpack.config.js --watch",
     "build:win": "set NODE_ENV=PROD && webpack --config webpack.config.js"

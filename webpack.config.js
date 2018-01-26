@@ -39,7 +39,8 @@ const webpackConfig = {
     },
     plugins: [
         new CopyWebpackPlugin([{
-            from: "static/*/**",
+            from: "static/*",
+            to: "[name].[ext]"
         }]),
         new ExtractTextPlugin({
             filename: "styles.css",
