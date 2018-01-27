@@ -19,7 +19,7 @@ function onSearchPage() {
 function onWatchPage() {
     const channelPageLink = document.querySelector<HTMLAnchorElement>(".ChannelInfo-pageLinks > a");
     // dアニメストア動画以外では動かない
-    if (channelPageLink && channelPageLink.href.indexOf("ch2632720") === -1) {
+    if (!channelPageLink || channelPageLink.href.indexOf("ch2632720") === -1) {
         return;
     }
     const description = document.querySelector<HTMLDivElement>("div.VideoDescription-html");
