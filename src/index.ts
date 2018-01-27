@@ -22,23 +22,18 @@ function onWatchPage() {
     if (!channelPageLink || channelPageLink.href.indexOf("ch2632720") === -1) {
         return;
     }
-    const description = document.querySelector<HTMLDivElement>("div.VideoDescription-html");
-    const nextEpisodeLink = description.innerHTML.match(/次話→<a href="([^"]*)" class="watch">so\d*<\/a>/);
-    if (nextEpisodeLink) {
-        const video = document.querySelector("video");
-        if (video) {
-            video.addEventListener("ended", () => {
-                const nextEpAnchor = document.querySelector<HTMLAnchorElement>(`a[href="${nextEpisodeLink[1]}"`);
+    const video = document.querySelector("video");
+    if (video) {
+        video.addEventListener("ended", () => {
+            const description = document.querySelector<HTMLDivElement>("div.VideoDescription-html");
+            const nextEpLink = description.innerHTML.match(/次話→<a href="([^"]*)" class="watch">so\d*<\/a>/);
+            if (nextEpLink) {
+                const video = document.querySelector("video");
+                const nextEpAnchor = document.querySelector<HTMLAnchorElement>(`a[href="${nextEpLink[1]}"`);
                 nextEpAnchor.click();
-                setTimeout(() => {
-                    onWatchPage();
-                }, 5000);
-            });
-        }
+            }
+        });
     }
-
-
-
 }
 
 function safeSplit(text: HTMLElement | null | undefined, separator: string | RegExp, limit?: number): string[] {
