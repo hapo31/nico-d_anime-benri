@@ -30,7 +30,22 @@ function onWatchPage() {
             if (nextEpLink) {
                 const video = document.querySelector("video");
                 const nextEpAnchor = document.querySelector<HTMLAnchorElement>(`a[href="${nextEpLink[1]}"`);
+                const isFullScreened = document.webkitFullscreenElement != null;
+
                 nextEpAnchor.click();
+                // フルスクリーン状態を維持したい
+                if (isFullScreened) {
+                    video.onplay = () => {
+                        const fullScreenButton = document.querySelector<HTMLButtonElement>("button.EnableFullScreenButton");
+                        if (fullScreenButton) {
+                            // TODO: この処理だとフルスクリーンにならずにブラウザサイズに拡大になってしまうので治す
+                            fullScreenButton.click();
+                        }
+                    };
+                } else {
+                    // 解除されていたらフルスクリーン化はしない
+                    video.onplay = null;
+                }
             }
         });
     }
